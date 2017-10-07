@@ -1,0 +1,21 @@
+package br.com.active.reservas.bean.sala;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import br.com.active.reservas.bean.EntidadeBase;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name = "ar_sala")
+@EqualsAndHashCode(callSuper= true)
+public @Data class Sala extends EntidadeBase{
+
+	@Column(name = "capacidade")
+	private Integer capacidade;
+
+	
+}
