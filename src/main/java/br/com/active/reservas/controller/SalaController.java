@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.active.reservas.servicos.ServicoSala;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/salas")
@@ -14,12 +15,10 @@ public class SalaController {
 	@Autowired
 	private ServicoSala servicoSala;
 	
-	@GetMapping("")
-	public String listar() {
+	@GetMapping("/")
+	public ModelAndView listarSalas() { 
 		
-//		servicoSala.findAll();
-		
-		return "listaSalas";
+            return new ModelAndView("listarSalas", "salas", servicoSala.findAll());
 		
 	}
 	

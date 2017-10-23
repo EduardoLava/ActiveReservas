@@ -1,6 +1,7 @@
 package br.com.active.reservas.bean;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

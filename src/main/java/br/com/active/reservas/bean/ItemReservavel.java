@@ -35,8 +35,9 @@ public class ItemReservavel extends EntidadeBase{
 	
 	@Getter
 	@Setter
-	@ManyToOne
-	@JoinColumn(name = "id_responsavel")
+//	@ManyToOne
+//	@JoinColumn(name = "id_responsavel")
+        @Column(name = "id_responsavel")
 	private Long idResponsavel;
 	
 }
