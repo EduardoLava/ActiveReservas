@@ -88,6 +88,7 @@
                                 
                                 <div class="panel-footer">
                                     <button type="submit" class="btn btn-success">Salvar</button>
+                                    <a href="${pageContext.request.contextPath}/usuarios/" class="btn btn-danger">Cancelar</a>
                                 </div>
                             </form:form>
                         </div>
