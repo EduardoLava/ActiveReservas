@@ -24,8 +24,6 @@ public class ServicoSala implements ServicoBase<Sala, Long>{
 	 */
 	@Override
 	public Sala salvar(Sala entidade) {
-
-            System.out.println(entidade);
             return this.repositorioSala.save(entidade);
                 
 	}

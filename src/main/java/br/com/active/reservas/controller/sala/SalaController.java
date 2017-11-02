@@ -41,51 +41,36 @@ public class SalaController {
 		
 	}
         
-        @GetMapping("/cadastrar")
-        public ModelAndView criaFormCadastroSala(){
+        @GetMapping("/formulario")
+        public ModelAndView criaFormSala(Sala sala){
             
             List<Usuario> funcionariosAtivos = servicoUsuario
                     .findFuncionariosAtivos();
             
 //            nome da view no construtor
             ModelAndView modelAndView = new ModelAndView("salas/formCadastroSala");
-            modelAndView.addObject("sala", new Sala());
+            modelAndView.addObject("sala", sala);
             modelAndView.addObject("funcionariosAtivos", funcionariosAtivos);
             
             return modelAndView;
         }
        
         @PostMapping("/salvar")
-        public String salvarSala(@Valid @ModelAttribute("sala") Sala sala, BindingResult bindingResult){
+        public ModelAndView salvarSala(@Valid @ModelAttribute("sala") Sala sala, BindingResult bindingResult){
             
             if(bindingResult.hasFieldErrors()){
-                System.out.println("has field errors: "+bindingResult.toString());
-                return "salas/formCadastroSala";
+                  return criaFormSala(sala);
             }
-            
-//            if(sala.getId() != null){
-//                Sala x = servicoSala.findById(sala.getId());
-//                sala.setDataCadastro(x.getDataCadastro());
-//            }
             
             servicoSala.salvar(sala);
             
-            return "redirect:/salas/";
+            return new ModelAndView("redirect:/salas/");
             
         }
         
         @GetMapping("/editar")
-        public ModelAndView criaFormEditar(@RequestParam(value = "id", required = true) Long id ){
-            
-            List<Usuario> funcionariosAtivos = servicoUsuario.findFuncionariosAtivos();
-            
-            ModelAndView modelAndView = new ModelAndView("salas/formCadastroSala");
-            modelAndView.addObject("sala", servicoSala.findById(id));
-            modelAndView.addObject("funcionariosAtivos", funcionariosAtivos);
-            modelAndView.addObject("modo", "EDICAO");
-            
-            return modelAndView;
-            
+        public ModelAndView buscar(@RequestParam(value = "id", required = true) Long id ){
+            return criaFormSala(servicoSala.findById(id));
         }
 	
 }

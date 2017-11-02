@@ -44,7 +44,7 @@
         
         <div class="container-fluid">
             
-            <a href="${pageContext.request.contextPath}/salas/cadastrar" 
+            <a href="${pageContext.request.contextPath}/salas/formulario" 
                class="btn btn-info" 
                role="button" 
                aria-label="Left Align">

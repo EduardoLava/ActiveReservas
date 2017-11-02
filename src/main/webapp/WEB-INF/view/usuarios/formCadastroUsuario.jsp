@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-10 col-lg-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1">
                   
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">Novo Usuário</div>
                         <div class="panel-body ">
                             <form:form method="POST" modelAttribute="usuario" action="${pageContext.request.contextPath}/usuarios/salvar">

@@ -34,49 +34,60 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                     <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Nome
-                                </th> 
-                                <th>
-                                    Email
-                                </th> 
-                                <th>
-                                    Status
-                                </th> 
-                                <th>
-                                    Tipo
-                                </th>  
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${usuarios}" var="u">
-                                <tr>
-                                    <td>
-                                        <span>${u.id}</span>
-                                    </td>
-                                    <td>
-                                        <span>${u.nome}</span>
-                                    </td>
-                                    <td>
-                                        <span>${u.email}</span> 
-                                    </td>
-                                    <td>
-                                        <span>${u.statusUsuario}</span> 
-                                    </td>
-                                    <td>
-                                        <span>${u.tipoUsuario}</span> 
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                      <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-lg-9 col-md-9 col-sm-7">
+                                    <h3 class="panel-title input-sm">Usuários</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive"> 
+                            <table class="table table-hover table-striped table-bordered table-md">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            Nome
+                                        </th> 
+                                        <th>
+                                            Email
+                                        </th> 
+                                        <th>
+                                            Status
+                                        </th> 
+                                        <th>
+                                            Tipo
+                                        </th>  
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${usuarios}" var="u">
+                                        <tr>
+                                            <td>
+                                                <span>${u.id}</span>
+                                            </td>
+                                            <td>
+                                                <span>${u.nome}</span>
+                                            </td>
+                                            <td>
+                                                <span>${u.email}</span> 
+                                            </td>
+                                            <td>
+                                                <span>${u.statusUsuario}</span> 
+                                            </td>
+                                            <td>
+                                                <span>${u.tipoUsuario}</span> 
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
 
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </c:otherwise>
             </c:choose>
            

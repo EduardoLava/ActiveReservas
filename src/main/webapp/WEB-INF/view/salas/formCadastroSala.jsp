@@ -27,16 +27,9 @@
             <div class="row">
                 <div class="col-md-10 col-lg-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1">
                   
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <c:choose>
-                                <c:when test="${modo != null and modo=='EDICAO'}">
-                                    Edição de Sala
-                                </c:when>
-                                <c:otherwise>
-                                    Cadastro de Sala
-                                </c:otherwise>
-                            </c:choose> 
+                            Sala
                         </div>
                         <div class="panel-body ">
                             <form:form method="POST" modelAttribute="sala" action="${pageContext.request.contextPath}/salas/salvar">
@@ -49,7 +42,7 @@
                                         <div class="form-group"> 
                                            <label for="inputCodigo">Código:</label>
                                             <form:input class="form-control" id="inputCodigo" path="codigo"/>
-                                            <span><c:if test="${fields.hasErrors('codigo')}">Informe o código</c:if> </span>
+                                            <form:errors path="codigo" class="text-danger"/>
                                         </div> 
                                     </div>
                                 </div> 
@@ -58,6 +51,7 @@
                                         <div class="form-group"> 
                                            <label for="inputDescricao">Descrição:</label>
                                             <form:input class="form-control" id="inputDescricao" path="descricao"/>
+                                            <form:errors path="descricao" class="text-danger"/>
                                         </div> 
                                     </div>
                                 </div> 
@@ -66,6 +60,7 @@
                                         <div class="form-group"> 
                                             <label for="inputCapacidade">Capacidade:</label>
                                             <form:input type="number" class="form-control" id="inputCapacidade" path="capacidade"/>
+                                            <form:errors path="capacidade" class="text-danger"/>
                                         </div>  
                                     </div>  
                                 </div>  
@@ -96,6 +91,7 @@
                                                     </form:select>
                                                </c:otherwise>
                                            </c:choose>
+                                           <form:errors path="responsavel" class="text-danger"/>        
                                         </div> 
                                     </div> 
                                 </div> 

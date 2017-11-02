@@ -1,42 +1,45 @@
 package br.com.active.reservas.bean;
  
 import br.com.active.reservas.bean.usuario.Usuario;
-import java.time.LocalDate;
+import br.com.active.reservas.valida.unique.ValidacaoItemReservavel;
+import br.com.active.reservas.valida.unique.anottation.ValidarUniqueKey;
 
 import javax.persistence.Column;
-import javax.persistence.EntityListeners;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.Min;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 
-import lombok.Getter;
-import lombok.Setter;  
 import lombok.ToString;
+import org.hibernate.validator.constraints.NotBlank;
 
+@Entity
+@Table(name = "ar_item_reservavel")
 @ToString(callSuper = true)
-@MappedSuperclass  
-public class ItemReservavel extends EntidadeBase{
+@EqualsAndHashCode(callSuper = true)
+@Inheritance(strategy = InheritanceType.JOINED)
+public @Data class ItemReservavel extends EntidadeBase{
 
 	public ItemReservavel() {}
 	
-	@Getter
-	@Setter
-	@Column(name = "codigo", nullable= false, unique= true)
-        @NotNull
-        @Min(1)
+        @ValidarUniqueKey(message = "Já existe um item com este código", service = ValidacaoItemReservavel.class)
+	@Column(name = "codigo", nullable= false, unique= true )
+        @NotBlank(message = "Informe o código da sala" )
 	private String codigo;
-	
-	@Getter
-	@Setter
+
+//        @NotEmpty(message = "Informe uma descrição")
+        @NotBlank(message =  "Informe uma descrição")
 	@Column(name = "descricao", nullable = false)
 	private String descricao;
 	
-	
-	@Getter
-	@Setter
+
+        @NotNull(message = "Selecione um responsável")
 	@ManyToOne
 	@JoinColumn(name = "id_responsavel") 
 	private Usuario responsavel;

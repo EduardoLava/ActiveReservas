@@ -13,7 +13,7 @@
                             <a href="${pageContext.request.contextPath}/salas/">Listagem</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/salas/cadastrar">Cadastrar</a>
+                            <a href="${pageContext.request.contextPath}/salas/formulario">Cadastrar</a>
                         </li>
                     </ul>
                 </li>
