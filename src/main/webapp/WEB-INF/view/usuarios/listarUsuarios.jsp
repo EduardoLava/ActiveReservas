@@ -20,7 +20,10 @@
         
         <div class="container-fluid">
             
-            <a href="${pageContext.request.contextPath}/usuarios/cadastro" class="btn btn-info" role="button" aria-label="Left Align"><span class="glyphicon glyphicon-plus"></span>Cadastrar Usuarios</a>
+            <a href="${pageContext.request.contextPath}/usuarios/cadastrar" 
+               class="btn btn-info"
+               role="button" 
+               aria-label="Left Align">Cadastrar Usuarios</a>
        
             <hr/>
             

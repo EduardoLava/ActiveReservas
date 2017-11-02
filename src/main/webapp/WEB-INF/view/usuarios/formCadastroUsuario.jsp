@@ -11,9 +11,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <tag:dependecias/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <tag:dependecias/>
         <title>Cadastro de usuário</title>
     </head>
     <body>
@@ -27,7 +27,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Novo Usuário</div>
                         <div class="panel-body ">
-                            <form:form method="POST" modelAttribute="usuario" action="${pageContext.request.contextPath}/usuarios/doInsertData">
+                            <form:form method="POST" modelAttribute="usuario" action="${pageContext.request.contextPath}/usuarios/salvar">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 

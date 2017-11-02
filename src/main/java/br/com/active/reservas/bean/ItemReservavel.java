@@ -1,18 +1,23 @@
 package br.com.active.reservas.bean;
-
+ 
+import br.com.active.reservas.bean.usuario.Usuario;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.data.annotation.CreatedDate;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.Setter;  
+import lombok.ToString;
 
-@MappedSuperclass
+@ToString(callSuper = true)
+@MappedSuperclass  
 public class ItemReservavel extends EntidadeBase{
 
 	public ItemReservavel() {}
@@ -20,6 +25,8 @@ public class ItemReservavel extends EntidadeBase{
 	@Getter
 	@Setter
 	@Column(name = "codigo", nullable= false, unique= true)
+        @NotNull
+        @Min(1)
 	private String codigo;
 	
 	@Getter
@@ -27,17 +34,11 @@ public class ItemReservavel extends EntidadeBase{
 	@Column(name = "descricao", nullable = false)
 	private String descricao;
 	
-	// não o spring irá setar o valor automaticamente 
-	@Getter
-	@CreatedDate
-	@Column(name = "data_cadastro", nullable = false)
-	private LocalDate dataCadastro;
 	
 	@Getter
 	@Setter
-//	@ManyToOne
-//	@JoinColumn(name = "id_responsavel")
-        @Column(name = "id_responsavel")
-	private Long idResponsavel;
+	@ManyToOne
+	@JoinColumn(name = "id_responsavel") 
+	private Usuario responsavel;
 	
 }

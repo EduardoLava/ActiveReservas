@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.active.reservas.bean.sala.Sala;
 import br.com.active.reservas.dao.RepositorioSala;
+import java.util.List;
 
 @Service
 @Transactional
@@ -23,7 +24,10 @@ public class ServicoSala implements ServicoBase<Sala, Long>{
 	 */
 	@Override
 	public Sala salvar(Sala entidade) {
-		return this.repositorioSala.save(entidade);
+
+            System.out.println(entidade);
+            return this.repositorioSala.save(entidade);
+                
 	}
 	
 	@Override
@@ -41,5 +45,10 @@ public class ServicoSala implements ServicoBase<Sala, Long>{
 		return this.repositorioSala.findAll();
 	}
 
+        public List<Sala> filtrarPorDescricaoOuCodigo(String filtro){
+            
+            return this.repositorioSala.findByDescricaoLikeOrCodigoLike("%"+filtro+"%","%"+filtro+"%");
+            
+        }
 	
 }

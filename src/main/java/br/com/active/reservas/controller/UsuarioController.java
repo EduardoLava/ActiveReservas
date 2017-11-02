@@ -33,7 +33,7 @@ public class UsuarioController {
 		
 	}
         
-        @GetMapping("/cadastro")
+        @GetMapping("/cadastrar")
         public ModelAndView criaFormCadastro(){
      
                 return new ModelAndView(
@@ -44,13 +44,13 @@ public class UsuarioController {
                 
         }
         
-        @PostMapping("/doInsertData")
+        @PostMapping("/salvar")
         public String cadastrarUsuario(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result){
             
             if(result.hasFieldErrors()){
                 return "usuarios/formCadastroUsuario";
             }
-            
+            System.out.println(usuario);
             servicoUsuario.salvar(usuario);
             
             return "redirect:/usuarios/";
