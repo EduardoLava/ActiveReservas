@@ -11,4 +11,6 @@ public interface RepositorioUsuario extends CrudRepository<Usuario, Long> {
 
     List<Usuario> findByTipoUsuarioAndStatusUsuario(TipoUsuario tipoUsuario, StatusUsuario statusUsuario);
     
+    Usuario findByLogin(String login);
+    
 }

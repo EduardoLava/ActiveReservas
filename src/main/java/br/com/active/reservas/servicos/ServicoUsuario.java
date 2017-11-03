@@ -53,5 +53,9 @@ public class ServicoUsuario implements ServicoBase<Usuario, Long>{
                     );
             
         }
+        
+        public Usuario buscarPorLogin(String login){
+            return this.repositorioUsuario.findByLogin(login);
+        }
 	
 }

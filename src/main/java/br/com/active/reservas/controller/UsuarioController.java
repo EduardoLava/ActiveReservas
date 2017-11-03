@@ -1,7 +1,5 @@
 package br.com.active.reservas.controller;
 
-import br.com.active.reservas.bean.usuario.StatusUsuario;
-import br.com.active.reservas.bean.usuario.TipoUsuario;
 import br.com.active.reservas.bean.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,7 +48,7 @@ public class UsuarioController {
             if(result.hasFieldErrors()){
                 return "usuarios/formCadastroUsuario";
             }
-            System.out.println(usuario);
+            
             servicoUsuario.salvar(usuario);
             
             return "redirect:/usuarios/";
