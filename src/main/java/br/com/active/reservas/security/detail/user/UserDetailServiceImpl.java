@@ -5,8 +5,9 @@
  */
 package br.com.active.reservas.security.detail.user;
 
+import br.com.active.reservas.bean.usuario.TipoUsuario;
 import br.com.active.reservas.bean.usuario.Usuario;
-import br.com.active.reservas.servicos.ServicoUsuario;
+import br.com.active.reservas.servicos.impl.ServicoUsuario;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,27 +25,28 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private ServicoUsuario userDao;
 
     @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 
-        Usuario user = userDao.buscarPorLogin(userId);
+        Usuario user = userDao.buscarUsuarioAtivoPorLogin(login);
 
         if (user == null) {
             throw new UsernameNotFoundException("Usuário ou senha inválidos.");
         }
+        
         return new org.springframework.security.core.userdetails.User(
                 user.getLogin(),
                 user.getSenha(), 
-                getAuthority()
+                user.getTipoUsuario().getFuncoes()
         );
-        //ajustar esta parte
+        
     }
 
-    private List getAuthority() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-    }
+//    private List getAuthority(TipoUsuario tipoUsuario) {
+//        reutrn 
+//    }
 
     public List getUsers() {
-        return Arrays.asList("ROLE_USER");
+        return Arrays.asList("ADMINISTRADOR", "FUNCIONARIO", "USUARIO");
     }
 
 }

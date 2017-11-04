@@ -5,6 +5,7 @@
 --%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tag"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,16 +43,18 @@
     <body>
         <tag:header urlImage=""/>
         
+        
         <div class="container-fluid">
-            
-            <a href="${pageContext.request.contextPath}/salas/formulario" 
-               class="btn btn-info" 
-               role="button" 
-               aria-label="Left Align">
-                Cadastrar Salas
-            </a>
+            <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
+                <a href="${pageContext.request.contextPath}/salas/formulario" 
+                   class="btn btn-info" 
+                   role="button" 
+                   aria-label="Left Align">
+                    Cadastrar Salas
+                </a>
        
-            <hr/>
+                <hr/>
+            </sec:authorize>
             
             <c:choose>
                 <c:when test="${empty salas}">
@@ -87,8 +90,10 @@
                                         <th width="30%">
                                             Responsável
                                         </th> 
-                                        <th width="10%"> 
-                                        </th> 
+                                        <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
+                                            <th width="10%"> 
+                                            </th> 
+                                        </sec:authorize>
                                     </tr>
                                 </thead>
                                 <tbody id="tb-salas">
@@ -106,12 +111,14 @@
                                             <td width="30%">
                                                 <span>${s.responsavel.nome}</span> 
                                             </td>
-                                            <td width="10%" class="text-center"> 
-                                                <a class="btn btn-info btn-sm" 
-                                                   href="${pageContext.request.contextPath}/salas/editar?id=${s.id}">
-                                                    Editar
-                                                </a>
-                                            </td>
+                                            <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
+                                                <td width="10%" class="text-center"> 
+                                                    <a class="btn btn-info btn-sm" 
+                                                       href="${pageContext.request.contextPath}/salas/editar?id=${s.id}">
+                                                        Editar
+                                                    </a>
+                                                </td>
+                                            </sec:authorize>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

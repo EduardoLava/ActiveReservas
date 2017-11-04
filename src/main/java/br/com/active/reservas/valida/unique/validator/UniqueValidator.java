@@ -5,13 +5,13 @@
  */
 package br.com.active.reservas.valida.unique.validator;
 
-import br.com.active.reservas.valida.unique.ValidacaoUnique;
 import br.com.active.reservas.valida.unique.anottation.ValidarUniqueKey;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import br.com.active.reservas.valida.unique.IValidacaoUnique;
 
 /**
  *
@@ -25,7 +25,7 @@ public class UniqueValidator implements ConstraintValidator<ValidarUniqueKey, Ob
     
     private static ApplicationContext applicationContext;
 
-    private ValidacaoUnique service;
+    private IValidacaoUnique service;
     
     @Autowired
     public  void setApplicationContext ( ApplicationContext applicationContext )  { 
@@ -35,13 +35,15 @@ public class UniqueValidator implements ConstraintValidator<ValidarUniqueKey, Ob
 
     @Override
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
-        return !this.service.validarUnique(o);
+        boolean res = !this.service.validarUnique(o);
+        System.out.println(res);
+        return res;
     }
 
     @Override
     public void initialize(ValidarUniqueKey unique) {
         
-        Class<? extends ValidacaoUnique> clazz = unique.service();
+        Class<? extends IValidacaoUnique> clazz = unique.service();
 
         this.service = UniqueValidator.applicationContext.getBean(clazz);
         

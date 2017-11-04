@@ -43,6 +43,7 @@
                                            <label for="inputCodigo">Código:</label>
                                             <form:input class="form-control" id="inputCodigo" path="codigo"/>
                                             <form:errors path="codigo" class="text-danger"/>
+                                            <form:errors path="" class="text-danger"/>
                                         </div> 
                                     </div>
                                 </div> 

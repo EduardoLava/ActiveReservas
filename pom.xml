@@ -105,7 +105,14 @@
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
-             <!--sobrescrevendo a versão do hibernate , para não precisar mais das gambiarras de conversão-->   
+        
+        <dependency>
+            <groupId>pl.chilldev.facelets</groupId>
+            <artifactId>facelets-taglib-spring-security</artifactId>
+            <version>0.0.5</version>
+        </dependency>
+        
+        <!--sobrescrevendo a versão do hibernate , para não precisar mais das gambiarras de conversão-->   
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>

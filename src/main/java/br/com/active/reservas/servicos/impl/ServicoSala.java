@@ -1,4 +1,4 @@
-package br.com.active.reservas.servicos;
+package br.com.active.reservas.servicos.impl;
 
 import javax.transaction.Transactional;
 
@@ -7,11 +7,12 @@ import org.springframework.stereotype.Service;
 
 import br.com.active.reservas.bean.sala.Sala;
 import br.com.active.reservas.dao.RepositorioSala;
+import br.com.active.reservas.servicos.IServicoBase;
 import java.util.List;
 
 @Service
 @Transactional
-public class ServicoSala implements ServicoBase<Sala, Long>{
+public class ServicoSala implements IServicoBase<Sala, Long>{
 
 	/**
 	 * equivale ao @Inject do cdi

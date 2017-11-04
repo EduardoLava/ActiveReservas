@@ -6,8 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
  
-import br.com.active.reservas.servicos.ServicoUsuario;
+import br.com.active.reservas.servicos.impl.ServicoUsuario;
 import javax.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ public class UsuarioController {
 	@Autowired
 	private ServicoUsuario servicoUsuario;
 	
+        @PreAuthorize("hasRole('ROLE_FUNCIONARIO')")
 	@GetMapping("/")
 	public ModelAndView listarUsuarios() { 
         
@@ -31,6 +33,7 @@ public class UsuarioController {
 		
 	}
         
+        @PreAuthorize("hasRole('ROLE_FUNCIONARIO')")
         @GetMapping("/cadastrar")
         public ModelAndView criaFormCadastro(){
      
@@ -42,6 +45,7 @@ public class UsuarioController {
                 
         }
         
+        @PreAuthorize("hasRole('ROLE_FUNCIONARIO')")
         @PostMapping("/salvar")
         public String cadastrarUsuario(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result){
             

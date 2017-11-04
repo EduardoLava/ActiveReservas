@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import br.com.active.reservas.bean.ItemReservavel;
+import br.com.active.reservas.valida.unique.IValidacaoItemReservavel;
+import br.com.active.reservas.valida.unique.anottation.ValidarUniqueKey;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;

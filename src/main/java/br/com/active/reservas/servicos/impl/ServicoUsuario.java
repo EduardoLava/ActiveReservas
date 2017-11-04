@@ -1,4 +1,4 @@
-package br.com.active.reservas.servicos;
+package br.com.active.reservas.servicos.impl;
 
 import br.com.active.reservas.bean.usuario.StatusUsuario;
 import br.com.active.reservas.bean.usuario.TipoUsuario;
@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 
 import br.com.active.reservas.bean.usuario.Usuario;
 import br.com.active.reservas.dao.RepositorioUsuario;
+import br.com.active.reservas.servicos.IServicoBase;
 import java.util.List;
 
 @Service
 @Transactional
-public class ServicoUsuario implements ServicoBase<Usuario, Long>{
+public class ServicoUsuario implements IServicoBase<Usuario, Long>{
 
 	/**
 	 * equivale ao @Inject do cdi
@@ -54,8 +55,8 @@ public class ServicoUsuario implements ServicoBase<Usuario, Long>{
             
         }
         
-        public Usuario buscarPorLogin(String login){
-            return this.repositorioUsuario.findByLogin(login);
+        public Usuario buscarUsuarioAtivoPorLogin(String login){
+            return this.repositorioUsuario.findByLoginAndStatusUsuario(login, StatusUsuario.ATIVO);
         }
 	
 }

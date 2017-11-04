@@ -1,7 +1,6 @@
 package br.com.active.reservas.bean;
  
 import br.com.active.reservas.bean.usuario.Usuario;
-import br.com.active.reservas.valida.unique.ValidacaoItemReservavel;
 import br.com.active.reservas.valida.unique.anottation.ValidarUniqueKey;
 
 import javax.persistence.Column;
@@ -18,22 +17,22 @@ import lombok.EqualsAndHashCode;
 
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
+import br.com.active.reservas.valida.unique.IValidacaoItemReservavel;
 
 @Entity
 @Table(name = "ar_item_reservavel")
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Inheritance(strategy = InheritanceType.JOINED)
+@ValidarUniqueKey(message = "Já existe um item com este código", service = IValidacaoItemReservavel.class)
 public @Data class ItemReservavel extends EntidadeBase{
 
 	public ItemReservavel() {}
 	
-        @ValidarUniqueKey(message = "Já existe um item com este código", service = ValidacaoItemReservavel.class)
-	@Column(name = "codigo", nullable= false, unique= true )
+        @Column(name = "codigo", nullable= false, unique= true )
         @NotBlank(message = "Informe o código da sala" )
 	private String codigo;
 
-//        @NotEmpty(message = "Informe uma descrição")
         @NotBlank(message =  "Informe uma descrição")
 	@Column(name = "descricao", nullable = false)
 	private String descricao;

@@ -6,18 +6,18 @@
 package br.com.active.reservas.valida.unique.impl;
 
 import br.com.active.reservas.bean.ItemReservavel;
-import br.com.active.reservas.servicos.ServicoItemReservavel;
-import br.com.active.reservas.valida.unique.ValidacaoItemReservavel;
-import br.com.active.reservas.valida.unique.ValidacaoUnique;
+import br.com.active.reservas.servicos.impl.ServicoItemReservavel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import br.com.active.reservas.valida.unique.IValidacaoItemReservavel;
+import br.com.active.reservas.valida.unique.IValidacaoUnique;
 
 /**
  *
  * @author Eduardo
  */
 @Service
-public class ValidaUniqueItemReservavel implements ValidacaoItemReservavel{
+public class ValidaUniqueItemReservavel implements IValidacaoItemReservavel{
 
     @Autowired
     private ServicoItemReservavel servicoItemReservavel;
@@ -25,7 +25,11 @@ public class ValidaUniqueItemReservavel implements ValidacaoItemReservavel{
     @Override
     public boolean validarUnique(Object object) {
         
-        return servicoItemReservavel.buscarPorCodigo((String) object);
+        ItemReservavel itemReservavel = (ItemReservavel) object;
+        boolean s = servicoItemReservavel.buscarPorCodigo(itemReservavel.getCodigo(), itemReservavel.getId());
+//        System.out.println(s);
+        return s;
+        
     }
     
         

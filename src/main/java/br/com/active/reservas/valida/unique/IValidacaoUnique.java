@@ -9,8 +9,8 @@ package br.com.active.reservas.valida.unique;
  *
  * @author Eduardo
  */
-public interface ValidacaoItemReservavel extends ValidacaoUnique{
+public interface IValidacaoUnique {
     
-    
+    boolean validarUnique(Object object);
     
 }
