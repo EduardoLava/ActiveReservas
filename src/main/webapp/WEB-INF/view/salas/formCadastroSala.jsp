@@ -25,11 +25,11 @@
         <div class="container-fluid ">
             
             <div class="row">
-                <div class="col-md-10 col-lg-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1">
+                <div class="col-md-8 col-lg-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-2">
                   
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            Sala
+                            <h4>Sala</h4>
                         </div>
                         <div class="panel-body ">
                             <form:form method="POST" modelAttribute="sala" action="${pageContext.request.contextPath}/salas/salvar">
@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                           <label for="inputCodigo">Código:</label>
+                                           <label for="inputCodigo">Código</label>
                                             <form:input class="form-control" id="inputCodigo" path="codigo"/>
                                             <form:errors path="codigo" class="text-danger"/>
                                             <form:errors path="" class="text-danger"/>
@@ -50,7 +50,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                           <label for="inputDescricao">Descrição:</label>
+                                           <label for="inputDescricao">Descrição</label>
                                             <form:input class="form-control" id="inputDescricao" path="descricao"/>
                                             <form:errors path="descricao" class="text-danger"/>
                                         </div> 
@@ -59,7 +59,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                            <label for="inputCapacidade">Capacidade:</label>
+                                            <label for="inputCapacidade">Capacidade</label>
                                             <form:input type="number" class="form-control" id="inputCapacidade" path="capacidade"/>
                                             <form:errors path="capacidade" class="text-danger"/>
                                         </div>  
@@ -68,7 +68,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                           <label for="inputIdResponsavel">Responsável:</label>
+                                           <label for="inputIdResponsavel">Responsável</label>
                                            <c:choose>
                                                <c:when test="${empty funcionariosAtivos}">
                                                    <input class="form-control" disabled="disabled" value="Nenhum funcionário ativo encontrado"/>

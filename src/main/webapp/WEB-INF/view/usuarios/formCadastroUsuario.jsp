@@ -22,16 +22,16 @@
         <div class="container-fluid ">
             
             <div class="row">
-                <div class="col-md-10 col-lg-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1">
+                <div class="col-md-8 col-lg-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-2">
                   
                     <div class="panel panel-primary">
-                        <div class="panel-heading">Novo Usuário</div>
+                        <div class="panel-heading"><h4>Novo Usuário</h4></div>
                         <div class="panel-body ">
                             <form:form method="POST" modelAttribute="usuario" action="${pageContext.request.contextPath}/usuarios/salvar">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                           <label for="inputNome">Nome:</label>
+                                           <label for="inputNome">Nome</label>
                                             <form:input class="form-control" id="inputNome" path="nome"/>
                                         </div> 
                                     </div>
@@ -39,7 +39,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                           <label for="inputLogin">Login:</label>
+                                           <label for="inputLogin">Login</label>
                                             <form:input class="form-control" id="inputLogin" path="login"/>
                                         </div> 
                                     </div>
@@ -47,7 +47,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                            <label for="inputSenha">Senha:</label>
+                                            <label for="inputSenha">Senha</label>
                                             <form:password class="form-control" id="inputSenha" path="senha"/>
                                         </div>  
                                     </div>  
@@ -55,7 +55,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                           <label for="inputEmail">Email:</label>
+                                           <label for="inputEmail">Email</label>
                                             <form:input class="form-control" id="inputEmail" path="email"/>
                                         </div> 
                                     </div> 
@@ -64,7 +64,7 @@
                                  <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                            <label for="selectStatus">Status:</label>
+                                            <label for="selectStatus">Status</label>
                                            <form:select class="form-control" id="selectStatus" path="statusUsuario">
                                                <form:option value="AGUARDANDO"/>
                                                <form:option value="ATIVO"/>
@@ -76,7 +76,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                            <label for="selectTipoUsuario">Tipo de Usuário:</label>
+                                            <label for="selectTipoUsuario">Tipo de Usuário</label>
                                            <form:select class="form-control" id="selectTipoUsuario" path="tipoUsuario">
                                                <form:option value="USUARIO"/>
                                                <form:option value="FUNCIONARIO"/>

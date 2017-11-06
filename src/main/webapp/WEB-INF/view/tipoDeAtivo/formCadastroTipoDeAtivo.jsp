@@ -25,11 +25,11 @@
         <div class="container-fluid ">
             
             <div class="row">
-                <div class="col-md-10 col-lg-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1">
+                <div class="col-md-8 col-lg-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-2">
                   
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            Tipo de Ativo
+                            <h4>Tipo de Ativo</h4>
                         </div>
                         <div class="panel-body ">
                             <form:form method="POST" modelAttribute="tipoDeAtivo" action="${pageContext.request.contextPath}/tipos-de-ativos/salvar">
@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                           <label for="inputdescricao">Descrição:</label>
+                                           <label for="inputdescricao">Descrição</label>
                                             <form:input class="form-control" id="inputdescricao" path="descricao"/>
                                             <form:errors path="descricao" class="text-danger"/>
                                         </div> 
@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group"> 
-                                            <label for="selectstatusTipoAtivo">Status:</label>
+                                            <label for="selectstatusTipoAtivo">Status</label>
                                            <form:select class="form-control" id="selectstatusTipoAtivo" path="statusTipoAtivo">
                                                <form:option value="ATIVO"/>
                                                <form:option value="INATIVO"/>
