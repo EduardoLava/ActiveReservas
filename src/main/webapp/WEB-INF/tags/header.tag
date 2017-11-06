@@ -39,6 +39,32 @@
                             </ul>
                         </li>
                     </sec:authorize>
+                    <li class="dropdown" >
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tipos de Ativos</a>
+                        <ul class="dropdown-menu">
+                            <!--<li>
+                                <a href="${pageContext.request.contextPath}/tipos-de-ativos/">Listagem</a>
+                            </li>-->
+                            <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/tipos-de-ativos/cadastrar">Cadastrar</a>
+                                </li>
+                            </sec:authorize>
+                        </ul>
+                    </li>
+                    <li class="dropdown" >
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ativos</a>
+                        <ul class="dropdown-menu">
+                            <!--<li>
+                                <a href="${pageContext.request.contextPath}/tipos-de-ativos/">Listagem</a>
+                            </li>-->
+                            <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/ativos/cadastrar">Cadastrar</a>
+                                </li>
+                            </sec:authorize>     
+                        </ul>
+                    </li>
                 </ul>
             </sec:authorize>
             <div class="nav navbar-nav navbar-right">
