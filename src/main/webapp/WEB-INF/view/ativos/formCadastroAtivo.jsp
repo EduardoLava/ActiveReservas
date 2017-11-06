@@ -43,7 +43,7 @@
         <c:set value="&nbsp(Opcional) " var="textoOpcional"></c:set>
         
         <div class="container-fluid ">
-            
+             
             <div class="row">
                 <div class="col-md-8 col-lg-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-2">
                   
