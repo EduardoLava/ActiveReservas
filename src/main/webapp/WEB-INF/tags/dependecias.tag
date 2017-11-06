@@ -11,6 +11,8 @@
 
 <link rel="stylesheet" type="text/css" href="/active-reservas/resources/css/bootstrap-min.css"/>
 <link rel="stylesheet" type="text/css" href="/active-reservas/resources/css/bootstrap-theme-min.css"/>
+<link rel="stylesheet" type="text/css" href="/active-reservas/resources/css/jquery-ui-min.css"/>
 
 <script type="text/javascript" src="/active-reservas/resources/js/jquery-3.2.1-min.js"></script> 
 <script type="text/javascript" src="/active-reservas/resources/js/bootstrap-min.js"></script> 
+<script type="text/javascript" src="/active-reservas/resources/js/jquery-ui-min.js"></script> 

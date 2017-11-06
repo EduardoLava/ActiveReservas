@@ -1,6 +1,6 @@
 package br.com.active.reservas.controller.sala;
 
-import br.com.active.reservas.bean.sala.Sala;
+import br.com.active.reservas.bean.itens.sala.Sala;
 import br.com.active.reservas.bean.usuario.Usuario;
 import br.com.active.reservas.security.session.ISessionFacade;
 import org.springframework.beans.factory.annotation.Autowired;

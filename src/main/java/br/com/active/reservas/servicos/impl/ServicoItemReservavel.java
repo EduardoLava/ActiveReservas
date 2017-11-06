@@ -1,6 +1,6 @@
 package br.com.active.reservas.servicos.impl;
 
-import br.com.active.reservas.bean.ItemReservavel;
+import br.com.active.reservas.bean.itens.ItemReservavel;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;

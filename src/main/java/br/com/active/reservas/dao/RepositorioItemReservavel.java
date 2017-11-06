@@ -1,6 +1,6 @@
 package br.com.active.reservas.dao;
  
-import br.com.active.reservas.bean.ItemReservavel;
+import br.com.active.reservas.bean.itens.ItemReservavel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

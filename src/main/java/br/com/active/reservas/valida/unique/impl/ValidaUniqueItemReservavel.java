@@ -5,7 +5,7 @@
  */
 package br.com.active.reservas.valida.unique.impl;
 
-import br.com.active.reservas.bean.ItemReservavel;
+import br.com.active.reservas.bean.itens.ItemReservavel;
 import br.com.active.reservas.servicos.impl.ServicoItemReservavel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
