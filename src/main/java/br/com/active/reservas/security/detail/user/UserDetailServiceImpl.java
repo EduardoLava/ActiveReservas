@@ -7,6 +7,7 @@ package br.com.active.reservas.security.detail.user;
 
 import br.com.active.reservas.bean.usuario.TipoUsuario;
 import br.com.active.reservas.bean.usuario.Usuario;
+import br.com.active.reservas.security.session.impl.SessionFacade;
 import br.com.active.reservas.servicos.impl.ServicoUsuario;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +33,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Usuário ou senha inválidos.");
         }
+        
+        SessionFacade.setUsuarioLogado(user);
         
         return new org.springframework.security.core.userdetails.User(
                 user.getLogin(),

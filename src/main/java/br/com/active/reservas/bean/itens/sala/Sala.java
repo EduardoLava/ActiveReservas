@@ -5,15 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import br.com.active.reservas.bean.itens.ItemReservavel;
-import br.com.active.reservas.valida.unique.IValidacaoItemReservavel;
-import br.com.active.reservas.valida.unique.anottation.ValidarUniqueKey;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @SuppressWarnings("serial")
 @Entity
@@ -21,13 +19,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 @EqualsAndHashCode(callSuper= true)
 @ToString(callSuper = true)
 @PrimaryKeyJoinColumn(name = "idItemReservavel")
+@DiscriminatorValue(value = "SALA")
 public @Data class Sala extends ItemReservavel{
 
-        @NotNull(message = "Informe a capacidade da sala")
-        @Min(value = 1, message = "Informe um valor válido")
-	@Column(name = "capacidade")
-	private Integer capacidade;
-         
+    @Column(name = "idItemReservavel", updatable = false, insertable = false)
+    private Long idItemReservavel;
 
+    @NotNull(message = "Informe a capacidade da sala")
+    @Min(value = 1, message = "Informe um valor válido")
+    @Column(name = "capacidade")
+    private Integer capacidade;
 	
 }

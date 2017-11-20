@@ -19,12 +19,24 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
 import br.com.active.reservas.valida.unique.IValidacaoItemReservavel;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import org.hibernate.annotations.DiscriminatorFormula;
+import org.hibernate.annotations.DiscriminatorOptions;
+import org.hibernate.annotations.Fetch;
 
+/**
+ * DiscriminatorColumn in JOINED strategy https://hibernate.atlassian.net/browse/HHH-6911
+ * @author Eduardo
+ */
 @Entity
 @Table(name = "ar_item_reservavel")
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo", length = 5, discriminatorType = DiscriminatorType.STRING)
 @ValidarUniqueKey(message = "Já existe um item com este código", service = IValidacaoItemReservavel.class)
 public @Data class ItemReservavel extends EntidadeBase{
 
@@ -44,4 +56,8 @@ public @Data class ItemReservavel extends EntidadeBase{
 	@JoinColumn(name = "id_responsavel") 
 	private Usuario responsavel;
 	
+        @Enumerated(EnumType.STRING)
+        @Column(name = "tipo", insertable = false, updatable = false)
+        private TipoItem tipo;
+        
 }

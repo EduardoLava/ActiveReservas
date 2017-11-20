@@ -47,7 +47,7 @@
         <div class="container-fluid">
             <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
                 <a href="${pageContext.request.contextPath}/salas/formulario" 
-                   class="btn btn-info" 
+                   class="btn btn-primary" 
                    role="button" 
                    aria-label="Left Align">
                     Cadastrar Salas

@@ -16,3 +16,6 @@
 <script type="text/javascript" src="/active-reservas/resources/js/jquery-3.2.1-min.js"></script> 
 <script type="text/javascript" src="/active-reservas/resources/js/bootstrap-min.js"></script> 
 <script type="text/javascript" src="/active-reservas/resources/js/jquery-ui-min.js"></script> 
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">

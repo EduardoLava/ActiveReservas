@@ -71,11 +71,7 @@ public class AtivoController {
                 @Valid @ModelAttribute("ativo") Ativo ativo, 
                 BindingResult result
         ){
-            System.out.println("erros");
-            System.out.println(result.getFieldErrors());
-            System.out.println(result.getGlobalError());
-            System.out.println(result.getAllErrors());
-            System.out.println("fim erros");
+            
             if(result.hasFieldErrors() || result.hasGlobalErrors()){
                 return criaFormCadastro(ativo);
             }

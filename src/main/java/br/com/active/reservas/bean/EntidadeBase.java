@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import lombok.Data;
@@ -31,7 +32,7 @@ public @Data abstract class EntidadeBase implements Serializable{
 
 	public EntidadeBase() {}
 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
 	

@@ -5,10 +5,7 @@
  */
 package br.com.active.reservas.bean.itens.inventario;
 
-/**
- *
- * @author Eduardo
- */
+
 public enum StatusTipoAtivo {
     
     ATIVO("Ativo"),

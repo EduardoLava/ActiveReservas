@@ -4,14 +4,19 @@
 
 <nav class="navbar navbar-default">
    <div class="container-fluid">
-      <div class="navbar-header">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-            </ul>
-      </div>
-       <div class="collapse navbar-collapse" >
-            <ul class="nav navbar-nav">
-                <sec:authorize access="hasRole('ROLE_USUARIO')">
+       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#opcoes" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Home</a>
+    </div>
+       
+    <div class="collapse navbar-collapse" id="opcoes" >
+           <sec:authorize access="hasRole('ROLE_USUARIO')">
+                <ul class="nav navbar-nav">
                     <li class="dropdown" >
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Salas</a>
                         <ul class="dropdown-menu">
@@ -65,13 +70,21 @@
                             </sec:authorize>     
                         </ul>
                     </li>
+                    <li class="dropdown" >
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reservas</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/reservas/formulario">Cadastrar</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
-            </sec:authorize>
             <div class="nav navbar-nav navbar-right">
                 <form class="navbar-form navbar-left" action="${pageContext.request.contextPath}/logout" method="POST"> 
                     <button type="submit" class="btn btn-danger">Log Out</button>
                 </form>
             </div> 
+        </sec:authorize>
       </div>
    </div>
 </nav>

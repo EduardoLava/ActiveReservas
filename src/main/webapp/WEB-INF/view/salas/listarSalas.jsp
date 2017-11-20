@@ -16,26 +16,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <tag:dependecias/>
-        <script type="text/javascript">
-            $(function (){
-                $('#input-filtro').keypress(function(event){
-              //        ao pressionar enter (tecla 13) no campo de pesquisa chama esta funcao
-                        var keycode = (event.keyCode ? event.keyCode : event.which);
-                        if(keycode == '13'){
-              //                pega o valor do input
-                            var filtro = $("#input-filtro").val();
-
-                            if(filtro != null){
-              //                    invoca o metodo filtrar
-                                $.get("${pageContext.request.contextPath}/salas/filtrar", {"filtro": filtro}, function(data){
-             //                        pega o html retornado e insere dentro da table 
-                                    $("#tb-salas").html(data); 
-                                });
-                            }
-                        }
-                });
-            });
-        </script>  
         
         <title>Lista de salas</title>
         
@@ -43,11 +23,10 @@
     <body>
         <tag:header urlImage=""/>
         
-        
         <div class="container-fluid">
             <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
                 <a href="${pageContext.request.contextPath}/salas/formulario" 
-                   class="btn btn-info" 
+                   class="btn btn-primary" 
                    role="button" 
                    aria-label="Left Align">
                     Cadastrar Salas
@@ -58,8 +37,12 @@
             
             <c:choose>
                 <c:when test="${empty salas}">
-                    <div class="alert alert-info" role="alert">
-                        Nenhuma sala foi encontrada
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                            <div class="alert alert-info" role="alert">
+                                Nenhuma sala foi encontrada
+                            </div>
+                        </div>
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -128,6 +111,27 @@
                 </c:otherwise>
             </c:choose>
         </div>
+        
+         <script type="text/javascript">
+            $(function (){
+                $('#input-filtro').keypress(function(event){
+              //        ao pressionar enter (tecla 13) no campo de pesquisa chama esta funcao
+                        var keycode = (event.keyCode ? event.keyCode : event.which);
+                        if(keycode == '13'){
+              //                pega o valor do input
+                            var filtro = $("#input-filtro").val();
+
+                            if(filtro != null){
+              //                    invoca o metodo filtrar
+                                $.get("${pageContext.request.contextPath}/salas/filtrar", {"filtro": filtro}, function(data){
+             //                        pega o html retornado e insere dentro da table 
+                                    $("#tb-salas").html(data); 
+                                });
+                            }
+                        }
+                });
+            });
+        </script> 
         
     </body>
 </html>

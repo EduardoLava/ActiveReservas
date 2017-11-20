@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.active.reservas.bean.itens.inventario;
+package br.com.active.reservas.bean.reserva;
 
+/**
+ *
+ * @author Eduardo
+ */
+public enum StatusReserva {
+    
+    ATIVA("Ativa"),
+    CANCELADA("Cancelada");
 
-public enum StatusAtivo {
-    
-    DISPONIVEL("Disponível"),
-    INDISPONIVEL("Indisponível"),
-    MANUTENCAO("Manutenção"),
-    INATIVO("Inativo");
-    
     private final String valor;
     
-    private StatusAtivo(String valor){
+    private StatusReserva(String valor){
         this.valor = valor;
     }
 

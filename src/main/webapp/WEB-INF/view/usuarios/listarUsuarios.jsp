@@ -21,7 +21,7 @@
         <div class="container-fluid">
             
             <a href="${pageContext.request.contextPath}/usuarios/cadastrar" 
-               class="btn btn-info"
+               class="btn btn-primary"
                role="button" 
                aria-label="Left Align">Cadastrar Usuarios</a>
        

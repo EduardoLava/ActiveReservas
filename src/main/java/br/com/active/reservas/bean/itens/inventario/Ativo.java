@@ -6,6 +6,7 @@ import javax.persistence.Table;
 
 import br.com.active.reservas.bean.itens.ItemReservavel;
 import java.time.LocalDate;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
@@ -24,8 +25,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 @EqualsAndHashCode(callSuper= true)
 @ToString(callSuper = true)
 @PrimaryKeyJoinColumn(name = "idItemReservavel")
+@DiscriminatorValue(value = "ATIVO")
 public @Data class Ativo extends ItemReservavel{
 
+    @Column(name = "idItemReservavel", updatable = false, insertable = false)
+    private Long idItemReservavel;
+    
     @NotNull(message = "Informe a data de compra")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_compra", nullable = false)
