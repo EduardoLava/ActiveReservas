@@ -61,8 +61,27 @@ public class ReservaController {
     public ModelAndView listarReservas() { 
         
         ModelAndView modelAndView = new ModelAndView("reservas/listarReservas");
+        
+        Usuario usuarioLogado = SessionFacade.getUsuarioLogado();
+        
+        if(usuarioLogado.getTipoUsuario().equals(TipoUsuario.USUARIO)){
+            modelAndView.addObject("itensReservas", servicoItemReserva.buscarPor(usuarioLogado.getId()));
+        }else{
+            modelAndView.addObject("usuarios", servicoUsuario.findAll());
+            modelAndView.addObject("itensReservas", servicoItemReserva.findAll());
+        }    
+        modelAndView.addObject("usuarioLogado", SessionFacade.getUsuarioLogado());
+        
+        return modelAndView;
 
-        modelAndView.addObject("itensReservas", servicoItemReserva.findAll());
+    }
+    
+    @PreAuthorize("hasRole('ROLE_FUNCIONARIO')")
+    @GetMapping("/filtrar")
+    public ModelAndView listarFiltrar(@ModelAttribute(value = "id") Long id) { 
+        
+        ModelAndView modelAndView = new ModelAndView("reservas/filtrarReservasAjax");
+        modelAndView.addObject("itensReservas", servicoItemReserva.buscarPor(id));
         
         return modelAndView;
 

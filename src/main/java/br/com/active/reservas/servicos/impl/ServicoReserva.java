@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.active.reservas.bean.reserva.Reserva;
+import br.com.active.reservas.bean.usuario.TipoUsuario;
+import br.com.active.reservas.bean.usuario.Usuario;
 import br.com.active.reservas.dao.RepositorioReserva;
 import br.com.active.reservas.security.session.impl.SessionFacade;
 import br.com.active.reservas.servicos.IServicoBase;
@@ -44,11 +46,17 @@ public class ServicoReserva implements IServicoBase<Reserva, Long>{
 	
 	@Override
 	public Reserva findById(Long id) {
-		return this.repositorioReserva
-                        .findByIdAndUsuario_id(
-                                id, 
-                                SessionFacade.getUsuarioLogado().getId()
-                        );
+            
+            Usuario usuario = SessionFacade.getUsuarioLogado();
+            if(usuario.getTipoUsuario().equals(TipoUsuario.USUARIO)){
+                return this.repositorioReserva
+                .findByIdAndUsuario_id(
+                        id, 
+                        usuario.getId()
+                );
+            }
+            
+            return this.repositorioReserva.findOne(id);
 	}
 
 	@Override

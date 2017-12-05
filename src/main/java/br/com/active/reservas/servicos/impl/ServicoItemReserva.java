@@ -58,6 +58,15 @@ public class ServicoItemReserva implements IServicoBase<ItemReserva, Long>{
             
         }
         
+        public List<ItemReserva> buscarPor(Long idUsuario){
+            
+            if(-1 == idUsuario.intValue()){
+                return repositorioItemReserva.findAll();
+            }
+            
+            return repositorioItemReserva.findByUsuario_id(idUsuario);
+        }
+        
         public List<ItemReserva> buscarPor(Long idUsuario, LocalDate data){
             
             if(SessionFacade.getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.USUARIO)){

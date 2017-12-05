@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <tag:dependecias/>
         <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
-        <title>Cadastro de reserva</title>
+        <title>Cadastro de emprestimo</title>
     </head>
     <body>
         <tag:header urlImage=""/>
@@ -82,11 +82,11 @@
                             data-toggle="modal" 
                             data-target="#myModal">Adicionar Itens</button>
                     
-                    <button type="button" 
+<!--                    <button type="button" 
                             class="btn btn-primary" 
                             id="bt-adicionar-reservas" 
                             data-toggle="modal" 
-                            data-target="#myModal">Adicionar Reservas</button>
+                            data-target="#myModal">Adicionar Reservas</button>-->
 
                     <c:if test="${itensMeusEmprestimos.size() > 0}">
                         <button type="button" 
@@ -222,7 +222,7 @@
                 var pars = {'usuario':usuario};
 
                 $.post(uri, pars, function () {
-                    alert("Reserva salva com sucesso");
+                    alert("Empréstimo salvo com sucesso");
                 });
 
             });

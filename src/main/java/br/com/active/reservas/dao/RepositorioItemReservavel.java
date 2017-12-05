@@ -50,7 +50,8 @@ public interface RepositorioItemReservavel extends JpaRepository<ItemReservavel,
             + "     where "
             + "         ei.itemReservavel = it "
             + "         and ei.data = ?#{[0]} "
-            + "         and emp.statusEmprestimo = 'ATIVO' "
+            + "         and emp.statusEmprestimo = 'ATIVO'"
+            + "         and ei.horaDevolucao is null "
             + " ) "
     )
     List<ItemReservavel> findByTipoAndTipoDeAtivoAndNotExistsReserva(
@@ -85,7 +86,8 @@ public interface RepositorioItemReservavel extends JpaRepository<ItemReservavel,
             + "     where "
             + "         ei.itemReservavel = it "
             + "         and ei.data = ?#{[0]} "
-            + "         and emp.statusEmprestimo = 'ATIVO' "
+            + "         and emp.statusEmprestimo = 'ATIVO'"
+            + "         and ei.horaDevolucao is null  "
             + " ) "
     )
     List<ItemReservavel> findByTipoAndNotExistsReserva(TipoItem tipo, LocalDate data);
@@ -115,6 +117,7 @@ public interface RepositorioItemReservavel extends JpaRepository<ItemReservavel,
             + "         ei.itemReservavel = it "
             + "         and ei.data = ?#{[0]} "
             + "         and emp.statusEmprestimo = 'ATIVO' "
+            + "         and ei.horaDevolucao is null "
             + " ) ")
     List<ItemReservavel> findByNotExistsReserva( LocalDate data);
     

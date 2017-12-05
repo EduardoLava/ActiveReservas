@@ -1,18 +1,15 @@
 package br.com.active.reservas.servicos.impl;
 
 import br.com.active.reservas.bean.emprestimo.EmprestimoItem;
-import br.com.active.reservas.bean.emprestimo.responsavel.UsuarioEmprestimo;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.active.reservas.bean.reserva.Reserva;
 import br.com.active.reservas.dao.RepositorioEmprestimoItem;
-import br.com.active.reservas.dao.RepositorioReserva;
-import br.com.active.reservas.dao.RepositorioUsuarioEmprestimo;
-import br.com.active.reservas.security.session.impl.SessionFacade;
 import br.com.active.reservas.servicos.IServicoBase;
+import java.time.LocalTime;
+import java.util.List;
 
 @Service
 @Transactional
@@ -48,5 +45,20 @@ public class ServicoEmprestimoItem implements IServicoBase<EmprestimoItem, Long>
 		return this.repositorioEmprestimoItem.findAll();
 	}
         
+        public List<EmprestimoItem> buscarPor(Long idUsuario){ 
+           
+            if(-1 == idUsuario.intValue()){
+                return repositorioEmprestimoItem.findAll();
+            }
+            
+            return repositorioEmprestimoItem.findByUsuario_id(idUsuario);
+            
+        }
+        
+        public void finalizarEmprestimo(EmprestimoItem emprestimoItem){
+            emprestimoItem.setHoraDevolucao(LocalTime.now());
+            repositorioEmprestimoItem.save(emprestimoItem);
+            
+        }
         
 }

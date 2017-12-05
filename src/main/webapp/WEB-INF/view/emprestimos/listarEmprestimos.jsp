@@ -18,7 +18,7 @@
 
         <tag:dependecias/>
 
-        <title>Lista de reservas</title>
+        <title>Lista de empréstimos</title>
 
     </head>
     <body>
@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12"> 
                             <div class="alert alert-info">
-                                Suas reservas
+                                Seus empréstimos
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12"> 
                             <div class="alert alert-info">
-                                Selecione um usuário para visualizar as reservas dele.
+                                Selecione um usuário para visualizar os empréstimos dele.
                             </div>
                         </div>
                     </div>
@@ -69,11 +69,11 @@
 
             <hr>
             <c:choose>
-                <c:when test="${empty itensReservas}">
+                <c:when test="${empty itensEmprestimos}">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="alert alert-info" role="alert">
-                                Nenhuma reserva foi encontrada
+                                Nenhum empréstimo foi encontrado
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-lg-9 col-md-9 col-sm-7">
-                                    <h3 class="panel-title input-sm">Reservas</h3>
+                                    <h3 class="panel-title input-sm">Empréstimos</h3>
                                 </div>
                             </div>
                         </div>
@@ -103,30 +103,46 @@
                                         <th width="10%">
                                             Status
                                         </th> 
+                                        <th>
+                                            &nbsp
+                                        </th>
                                     </tr>
                                 </thead>
-                                <tbody id="tb-reservas">
-                                    <c:forEach items="${itensReservas}" var="s">
+                                <tbody id="tb-emprestimos">
+                                    <c:forEach items="${itensEmprestimos}" var="s">
                                         <tr>
                                             <td width="10%">
-                                                <fmt:parseDate value="${s.dataReserva}" pattern="yyyy-MM-dd" 
+                                                 <fmt:parseDate value="${s.data}" pattern="yyyy-MM-dd" 
                                                         var="parsedDate" type="date" />
 
                                                 <fmt:formatDate value="${parsedDate}" var="formatada" 
                                                                 type="date" pattern="dd/MM/yyyy" />
-                                                <span>${formatada}</span>
+                                                <span>${formatada}</span> 
                                             </td>
                                             <td width="40%">
-                                                <span>${s.reserva.usuario.nome}</span>
+                                                <c:forEach items="${s.emprestimo.usuarios}" var='us'>
+                                                    <c:if test="${us.tipoResponsavelEmprestimo == 'RESPONSAVEL'}">
+                                                        ${us.usuario.nome}
+                                                    </c:if>
+                                                </c:forEach>
                                             </td>
                                             <td width="40%">
                                                 <span>${s.itemReservavel.descricao}</span>
                                             </td>
                                             <td width="10%">
-                                                <span>${s.status}</span>
+                                                <span>${s.emprestimo.statusEmprestimo}</span>
+                                            </td>
+                                            <td>
+                                                <c:if test="${it.horaDevolucao != null}">
+                                                    
+                                                    <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
+                                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/emprestimos/finalizar?id=${s.id}">Finalizar</a>
+                                                    </sec:authorize>
+                                                </c:if>
                                             </td>
                                         </tr>
                                     </c:forEach>
+                
                                 </tbody>
                             </table>
                         </div>
@@ -141,11 +157,11 @@
                     //        ao pressionar enter (tecla 13) no campo de pesquisa chama esta funcao
                     var filtro = $("#select-usuarios option:selected").val();
 
-                    if (filtro !== null) {
+                    if (filtro !== null) { 
                         //                    invoca o metodo filtrar
-                        $.get("${pageContext.request.contextPath}/reservas/filtrar", {"id": filtro}, function (data) {
+                        $.get("${pageContext.request.contextPath}/emprestimos/filtrar", {"id": filtro}, function (data) {
                             //                        pega o html retornado e insere dentro da table 
-                            $("#tb-reservas").html(data);
+                            $("#tb-emprestimos").html(data); 
                         });
                     }
                 });

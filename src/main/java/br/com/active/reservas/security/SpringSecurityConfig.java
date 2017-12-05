@@ -37,7 +37,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                                 new AntPathRequestMatcher("**/login")
                         ).and().authorizeRequests()
 //				.antMatchers("/salas/").hasRole("USUARIO")
-                        .and().formLogin().defaultSuccessUrl("/salas/")
+                        .and().formLogin().defaultSuccessUrl("/reservas/")
 				.loginPage("/login").and().logout().permitAll();
 	}
 

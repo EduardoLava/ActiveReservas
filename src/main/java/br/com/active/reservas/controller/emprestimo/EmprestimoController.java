@@ -9,10 +9,12 @@ import br.com.active.reservas.bean.itens.ItemReservavel;
 import br.com.active.reservas.bean.itens.TipoItem;
 import br.com.active.reservas.bean.itens.inventario.TipoDeAtivo;
 import br.com.active.reservas.bean.reserva.ItemReserva;
+import br.com.active.reservas.bean.usuario.TipoUsuario;
 import br.com.active.reservas.bean.usuario.Usuario;
 import br.com.active.reservas.converter.LocalDateStringConverter;
 import br.com.active.reservas.security.session.impl.SessionFacade;
 import br.com.active.reservas.servicos.impl.ServicoEmprestimo;
+import br.com.active.reservas.servicos.impl.ServicoEmprestimoItem;
 import br.com.active.reservas.servicos.impl.ServicoItemReservavel;
 import br.com.active.reservas.servicos.impl.ServicoTipoDeAtivo;
 import br.com.active.reservas.servicos.impl.ServicoUsuario;
@@ -49,6 +51,8 @@ public class EmprestimoController {
     @Autowired
     private ServicoItemReservavel servicoItemReservavel;
     
+    @Autowired
+    private ServicoEmprestimoItem servicoEmprestimoItem;
     
     @Autowired
     private ServicoUsuario servicoUsuario;
@@ -58,12 +62,46 @@ public class EmprestimoController {
     @PreAuthorize("hasRole('ROLE_USUARIO')")
     @GetMapping("/")
     public ModelAndView listarReservas() { 
+     
+        ModelAndView modelAndView = new ModelAndView("emprestimos/listarEmprestimos");
         
-//        vai ser implementado
-        return null;
+        Usuario usuarioLogado = SessionFacade.getUsuarioLogado();
+        
+        if(usuarioLogado.getTipoUsuario().equals(TipoUsuario.USUARIO)){
+            modelAndView.addObject("itensEmprestimos", servicoEmprestimoItem.buscarPor(usuarioLogado.getId()));
+        }else{
+            modelAndView.addObject("usuarios", servicoUsuario.findAll());
+            modelAndView.addObject("itensEmprestimos", servicoEmprestimoItem.findAll());
+        }    
+        modelAndView.addObject("usuarioLogado", SessionFacade.getUsuarioLogado());
+        
+        return modelAndView;
 
     }
 
+    @PreAuthorize("hasRole('ROLE_FUNCIONARIO')")
+    @GetMapping("/filtrar")
+    public ModelAndView listarFiltrar(@ModelAttribute(value = "id") Long id) {
+        
+        ModelAndView modelAndView = new ModelAndView("emprestimos/filtrarEmprestimosAjax");
+        modelAndView.addObject("itensEmprestimos", servicoEmprestimoItem.buscarPor(id));
+        
+        return modelAndView;
+
+    }
+    
+    @PreAuthorize("hasRole('ROLE_FUNCIONARIO')")
+    @GetMapping("/finalizar")
+    public ModelAndView finalizar(@ModelAttribute(value = "id") Long id) {
+        
+        EmprestimoItem emprestimoItem = servicoEmprestimoItem.findById(id);
+        servicoEmprestimoItem.finalizarEmprestimo(emprestimoItem);
+        
+        return new ModelAndView("redirect:/emprestimos/");
+        
+    }
+    
+    
     @PreAuthorize("hasRole('ROLE_USUARIO')")
     @GetMapping({"/formulario","/formulario/"})
     public ModelAndView criaFormEmprestimo(Emprestimo emprestimo){
@@ -139,8 +177,7 @@ public class EmprestimoController {
     @PreAuthorize("hasRole('ROLE_USUARIO')")
     @PostMapping("/salvar")
     public ModelAndView salvar(@RequestParam(value = "usuario")Long usuario){
-
-        System.out.println(usuario);
+ 
         List<UsuarioEmprestimo> usuarios = new ArrayList<UsuarioEmprestimo>();
         UsuarioEmprestimo funcionario = new UsuarioEmprestimo();
         funcionario.setUsuario(SessionFacade.getUsuarioLogado());

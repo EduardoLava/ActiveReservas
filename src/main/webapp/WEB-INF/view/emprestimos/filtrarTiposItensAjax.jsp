@@ -70,7 +70,7 @@
             <c:forEach items="${itensReservaveis}" var="it">
                     <tr id="item-disponivel">
                         <td width="10%" id="td-id">
-                            <input value="${it.id}" id="id-item-reservavel" />
+                            <input value="${it.id}" type="hidden" id="id-item-reservavel" />
                             <span>${it.tipo.value}</span>
                         </td>
                         <td width="20%">

@@ -11,7 +11,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Home</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/reservas/">Home</a>
     </div>
        
     <div class="collapse navbar-collapse" id="opcoes" >
@@ -68,6 +68,7 @@
                                     <a href="${pageContext.request.contextPath}/ativos/cadastrar">Cadastrar</a>
                                 </li>
                             </sec:authorize>     
+                                
                         </ul>
                     </li>
                     <li class="dropdown" >
@@ -76,8 +77,24 @@
                             <li>
                                 <a href="${pageContext.request.contextPath}/reservas/formulario">Cadastrar</a>
                             </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/reservas/">Listar</a>
+                            </li>
                         </ul>
                     </li>
+                    <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
+                        <li class="dropdown" >
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Emprestimos</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/emprestimos/formulario">Cadastrar</a>
+                                </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/emprestimos/">Listar</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </sec:authorize>
                 </ul>
             <div class="nav navbar-nav navbar-right">
                 <form class="navbar-form navbar-left" action="${pageContext.request.contextPath}/logout" method="POST"> 

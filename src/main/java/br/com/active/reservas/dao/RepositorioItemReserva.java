@@ -15,9 +15,10 @@ public interface RepositorioItemReserva extends CrudRepository<ItemReserva, Long
 
 //    List<Sala> findByDescricaoLikeOrCodigoLike(String descricao, String codigo);
     
-    @Query( " select it from ItemReserva it join Reserva r on r.id = it.reserva.id where r.usuario.id = ?#{[0]}")
+    @Query( " select it from ItemReserva it join Reserva r on r.id = it.reserva.id where r.usuario.id = ?#{[0]} order by it.dataReserva asc, it.itemReservavel.descricao ")
     List<ItemReserva> findByUsuario_id(Long id);
     
+    @Override
     List<ItemReserva> findAll();
     
     @Query( " select it from ItemReserva it join Reserva r on r.id = it.reserva.id where r.usuario.id = ?#{[0]} and it.dataReserva = ?#{[1]}  ")
