@@ -20,15 +20,15 @@
                     <li class="dropdown" >
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Salas</a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a href="${pageContext.request.contextPath}/salas/">Listagem</a>
-                            </li>
-
                             <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
                                 <li>
                                     <a href="${pageContext.request.contextPath}/salas/formulario">Cadastrar</a>
                                 </li>
+                                
                             </sec:authorize>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/salas/">Listar</a>
+                            </li>
                         </ul>
                     </li>
                     <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
@@ -36,10 +36,10 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Usuários</a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/usuarios/">Listagem</a>
+                                    <a href="${pageContext.request.contextPath}/usuarios/cadastrar">Cadastrar</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/usuarios/cadastrar">Cadastrar</a>
+                                    <a href="${pageContext.request.contextPath}/usuarios/">Listar</a>
                                 </li>
                             </ul>
                         </li>
@@ -47,27 +47,30 @@
                     <li class="dropdown" >
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tipos de Ativos</a>
                         <ul class="dropdown-menu">
-                            <!--<li>
-                                <a href="${pageContext.request.contextPath}/tipos-de-ativos/">Listagem</a>
-                            </li>-->
+                            
                             <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
                                 <li>
                                     <a href="${pageContext.request.contextPath}/tipos-de-ativos/cadastrar">Cadastrar</a>
                                 </li>
+                                
                             </sec:authorize>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/tipos-de-ativos/">Listar</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="dropdown" >
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ativos</a>
                         <ul class="dropdown-menu">
-                            <!--<li>
-                                <a href="${pageContext.request.contextPath}/tipos-de-ativos/">Listagem</a>
-                            </li>-->
+                      
                             <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
                                 <li>
                                     <a href="${pageContext.request.contextPath}/ativos/cadastrar">Cadastrar</a>
                                 </li>
-                            </sec:authorize>     
+                            </sec:authorize>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/tipos-de-ativos/">Listar</a>
+                            </li>
                                 
                         </ul>
                     </li>

@@ -16,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <tag:dependecias/>
-<!--        <script type="text/javascript">
+ <!--       <script type="text/javascript">
             $(function (){
                 $('#input-filtro').keypress(function(event){
               //        ao pressionar enter (tecla 13) no campo de pesquisa chama esta funcao
@@ -27,17 +27,17 @@
 
                             if(filtro != null){
               //                    invoca o metodo filtrar
-                                $.get("${pageContext.request.contextPath}/salas/filtrar", {"filtro": filtro}, function(data){
+                                $.get("${pageContext.request.contextPath}/ativos/filtrar", {"filtro": filtro}, function(data){
              //                        pega o html retornado e insere dentro da table 
-                                    $("#tb-salas").html(data); 
+                                    $("#tb-ativos").html(data); 
                                 });
                             }
                         }
                 });
             });
-        </script>  -->
+        </script> -->
         
-        <title>Lista de salas</title>
+        <title>Lista de ativos</title>
         
     </head>
     <body>
@@ -46,20 +46,20 @@
         
         <div class="container-fluid">
             <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
-                <a href="${pageContext.request.contextPath}/salas/formulario" 
+                <a href="${pageContext.request.contextPath}/ativos/cadastrar" 
                    class="btn btn-primary" 
                    role="button" 
                    aria-label="Left Align">
-                    Cadastrar Salas
+                    Cadastrar Ativos
                 </a>
        
                 <hr/>
             </sec:authorize>
             
             <c:choose>
-                <c:when test="${empty salas}">
+                <c:when test="${empty ativos}">
                     <div class="alert alert-info" role="alert">
-                        Nenhuma sala foi encontrada
+                        Nenhum ativo foi encontrado
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -67,11 +67,11 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-lg-9 col-md-9 col-sm-7">
-                                    <h3 class="panel-title input-sm">Salas</h3>
+                                    <h3 class="panel-title input-sm">Ativos</h3>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-5">
+<!--                                <div class="col-lg-3 col-md-3 col-sm-5">
                                     <input class='input-sm form-control' type="text" id="input-filtro" placeholder="Pesquisa"/>
-                                </div>      
+                                </div>      -->
                             </div>
                         </div>
                         <div class="table-responsive"> 
@@ -85,7 +85,7 @@
                                             Descrição
                                         </th> 
                                         <th width="10%">
-                                            Capacidade
+                                            Tipo
                                         </th> 
                                         <th width="30%">
                                             Responsável
@@ -96,8 +96,8 @@
                                         </sec:authorize>
                                     </tr>
                                 </thead>
-                                <tbody id="tb-salas">
-                                    <c:forEach items="${salas}" var="s">
+                                <tbody id="tb-ativos">
+                                    <c:forEach items="${ativos}" var="s">
                                         <tr>
                                             <td width="10%">
                                                 <span>${s.codigo}</span>
@@ -106,7 +106,7 @@
                                                 <span>${s.descricao}</span>
                                             </td>
                                             <td width="10%">
-                                                <span>${s.capacidade}</span>
+                                                <span>${s.tipoDeAtivo.descricao}</span>
                                             </td>
                                             <td width="30%">
                                                 <span>${s.responsavel.nome}</span> 
@@ -114,7 +114,7 @@
                                             <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
                                                 <td width="10%" class="text-center"> 
                                                     <a class="btn btn-info btn-sm" 
-                                                       href="${pageContext.request.contextPath}/salas/editar?id=${s.id}">
+                                                       href="${pageContext.request.contextPath}/ativos/editar?id=${s.id}">
                                                         Editar
                                                     </a>
                                                 </td>

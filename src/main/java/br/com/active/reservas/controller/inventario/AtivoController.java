@@ -45,6 +45,13 @@ public class AtivoController {
 		
 	}
         
+//        @PreAuthorize("hasRole('ROLE_USUARIO')")
+//	@GetMapping("/filtrar")
+//	public ModelAndView listarSalas(@RequestParam(value = "filtro", required = true) String filtro) { 
+//            return new ModelAndView("salas/listarSalasPesquisaAjax", "ativos", servicoAtivo.filtrarPorDescricaoOuCodigo(filtro));
+//		
+//	}
+        
         @PreAuthorize("hasRole('ROLE_FUNCIONARIO')")
         @GetMapping("/cadastrar")
         public ModelAndView criaFormCadastro(Ativo ativo){

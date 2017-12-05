@@ -37,7 +37,7 @@
             });
         </script>  -->
         
-        <title>Lista de salas</title>
+        <title>Lista de tipos de ativos</title>
         
     </head>
     <body>
@@ -46,20 +46,20 @@
         
         <div class="container-fluid">
             <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
-                <a href="${pageContext.request.contextPath}/salas/formulario" 
+                <a href="${pageContext.request.contextPath}/tipos-de-ativos/cadastrar" 
                    class="btn btn-primary" 
                    role="button" 
                    aria-label="Left Align">
-                    Cadastrar Salas
+                    Cadastrar Tipo de Ativo
                 </a>
        
                 <hr/>
             </sec:authorize>
             
             <c:choose>
-                <c:when test="${empty salas}">
+                <c:when test="${empty tiposDeAtivos}">
                     <div class="alert alert-info" role="alert">
-                        Nenhuma sala foi encontrada
+                        Nenhum tipo de ativo foi encontrado
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -67,11 +67,11 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-lg-9 col-md-9 col-sm-7">
-                                    <h3 class="panel-title input-sm">Salas</h3>
+                                    <h3 class="panel-title input-sm">Tipos de ativos</h3>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-5">
+<!--                                <div class="col-lg-3 col-md-3 col-sm-5">
                                     <input class='input-sm form-control' type="text" id="input-filtro" placeholder="Pesquisa"/>
-                                </div>      
+                                </div>      -->
                             </div>
                         </div>
                         <div class="table-responsive"> 
@@ -79,16 +79,13 @@
                                 <thead>
                                     <tr>
                                         <th width="10%">
-                                            Código
+                                            Descrição
                                         </th>
                                         <th width="40%">
-                                            Descrição
+                                            Status
                                         </th> 
                                         <th width="10%">
-                                            Capacidade
-                                        </th> 
-                                        <th width="30%">
-                                            Responsável
+                                            Id
                                         </th> 
                                         <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
                                             <th width="10%"> 
@@ -97,24 +94,21 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tb-salas">
-                                    <c:forEach items="${salas}" var="s">
+                                    <c:forEach items="${tiposDeAtivos}" var="s">
                                         <tr>
                                             <td width="10%">
-                                                <span>${s.codigo}</span>
-                                            </td>
-                                            <td width="40%">
                                                 <span>${s.descricao}</span>
                                             </td>
-                                            <td width="10%">
-                                                <span>${s.capacidade}</span>
+                                            <td width="40%">
+                                                <span>${s.statusTipoAtivo}</span>
                                             </td>
-                                            <td width="30%">
-                                                <span>${s.responsavel.nome}</span> 
+                                            <td width="10%">
+                                                <span>${s.id}</span>
                                             </td>
                                             <sec:authorize access="hasRole('ROLE_FUNCIONARIO')">
                                                 <td width="10%" class="text-center"> 
                                                     <a class="btn btn-info btn-sm" 
-                                                       href="${pageContext.request.contextPath}/salas/editar?id=${s.id}">
+                                                       href="${pageContext.request.contextPath}/tipos-de-ativos/editar?id=${s.id}">
                                                         Editar
                                                     </a>
                                                 </td>
