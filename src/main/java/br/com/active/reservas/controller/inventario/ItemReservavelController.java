@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/item-reservavel")
 public class ItemReservavelController {
-
-	@Autowired
-        private ServicoItemReservavel servicoItemReservavel;
-       
-        @Autowired
-        private ServicoTipoDeAtivo servicoTipoDeAtivo;
+//
+//	@Autowired
+//        private ServicoItemReservavel servicoItemReservavel;
+//       
+//        @Autowired
+//        private ServicoTipoDeAtivo servicoTipoDeAtivo;
 	
 //        @PreAuthorize("hasRole('ROLE_USUARIO')")
 //	@GetMapping("/")

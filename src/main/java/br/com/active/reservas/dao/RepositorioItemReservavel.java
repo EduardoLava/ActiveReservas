@@ -41,6 +41,17 @@ public interface RepositorioItemReservavel extends JpaRepository<ItemReservavel,
             + "         and ir.dataReserva = ?#{[2]} "
             + "         and ir.status = 'ATIVA' "
             + " ) "
+            + " and not exists ( "
+            + "    select "
+            + "         emp "
+            + "     from "
+            + "         Emprestimo emp"
+            + "         join EmprestimoItem ei on ei.emprestimo.id = emp.id "
+            + "     where "
+            + "         ei.itemReservavel = it "
+            + "         and ei.data = ?#{[0]} "
+            + "         and emp.statusEmprestimo = 'ATIVO' "
+            + " ) "
     )
     List<ItemReservavel> findByTipoAndTipoDeAtivoAndNotExistsReserva(
             TipoItem tipo, 
@@ -65,6 +76,17 @@ public interface RepositorioItemReservavel extends JpaRepository<ItemReservavel,
             + "         and ir.dataReserva = ?#{[1]} "
             + "         and ir.status = 'ATIVA' "
             + " ) "
+            + " and not exists ( "
+            + "    select "
+            + "         emp "
+            + "     from "
+            + "         Emprestimo emp"
+            + "         join EmprestimoItem ei on ei.emprestimo.id = emp.id "
+            + "     where "
+            + "         ei.itemReservavel = it "
+            + "         and ei.data = ?#{[0]} "
+            + "         and emp.statusEmprestimo = 'ATIVO' "
+            + " ) "
     )
     List<ItemReservavel> findByTipoAndNotExistsReserva(TipoItem tipo, LocalDate data);
     
@@ -82,6 +104,17 @@ public interface RepositorioItemReservavel extends JpaRepository<ItemReservavel,
             + "         ir.itemReservavel = it "
             + "         and ir.dataReserva = ?#{[0]} "
             + "         and ir.status = 'ATIVA' "
+            + " ) "
+            + " and not exists ( "
+            + "    select "
+            + "         emp "
+            + "     from "
+            + "         Emprestimo emp"
+            + "         join EmprestimoItem ei on ei.emprestimo.id = emp.id "
+            + "     where "
+            + "         ei.itemReservavel = it "
+            + "         and ei.data = ?#{[0]} "
+            + "         and emp.statusEmprestimo = 'ATIVO' "
             + " ) ")
     List<ItemReservavel> findByNotExistsReserva( LocalDate data);
     
